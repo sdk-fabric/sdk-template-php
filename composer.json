@@ -1,0 +1,14 @@
+{
+  "name": "sdkfabric/{{name}}",
+  "description": "{{repo_description}}",
+  "homepage": "https://sdk-fabric.org",
+  "license": "MIT",
+  "require": {
+    "sdkgen/client": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "{{namespace_json}}\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "client-php",
+  "require": {
+    "sdkfabric/{{name}}": {
+      "target": "./src",
+      "namespace": "{{namespace_json}}"
+    }
+  }
+}
