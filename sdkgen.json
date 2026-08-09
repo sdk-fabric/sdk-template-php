@@ -1,9 +1,9 @@
 {
   "type": "client-php",
   "require": {
-    "sdkfabric/{{name}}": {
+    "{{typehub_user}}/{{typehub_document}}": {
       "target": "./src",
-      "namespace": "{{namespace_json}}"
+      "namespace": "{{namespace:json}}"
     }
   }
 }

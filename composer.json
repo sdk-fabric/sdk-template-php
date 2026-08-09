@@ -1,14 +1,22 @@
 {
-  "name": "sdkfabric/{{name}}",
-  "description": "{{repo_description}}",
-  "homepage": "https://sdk-fabric.org",
+  "name": "{{name:json}}",
+  "description": "{{description:json}}",
+  "homepage": "{{website:json}}",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "christoph.kappestein@gmail.com",
+      "homepage": "https://chrisk.app/",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "sdkgen/client": "^2.0"
   },
   "autoload": {
     "psr-4": {
-      "{{namespace_json}}\\": "src/"
+      "{{namespace:json}}\\": "src/"
     }
   }
 }
