@@ -16,6 +16,5 @@ require __DIR__ . '/vendor/autoload.php';
 
 $client = new \{{namespace}}\Client::build('[access_token]');
 
-// @TODO use the client
-
+{{usage}}
 ```
