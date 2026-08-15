@@ -91,7 +91,7 @@ def main() -> None:
     replacements = load_replacements(config_file, lock_file)
 
     # 3. Process template files using pathlib
-    ignored_parts = {".git", ".sdk-fabric.json", "sync.py", "readme.py"}
+    ignored_parts = {".git", ".sdk-fabric.json", "sync.py", "readme.py", "__pycache__"}
     missing_placeholders_found = False
 
     for src_file in template_dir.rglob("*"):
@@ -100,8 +100,8 @@ def main() -> None:
 
         rel_path = src_file.relative_to(template_dir)
 
-        # Skip ignored root entries
-        if any(part in ignored_parts for part in rel_path.parts):
+        # Skip ignored root entries and bytecode files
+        if any(part in ignored_parts for part in rel_path.parts) or src_file.suffix == ".pyc":
             continue
 
         # Skip everything under .github/workflows specifically
