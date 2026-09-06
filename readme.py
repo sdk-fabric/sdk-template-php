@@ -8,25 +8,26 @@ from pathlib import Path
 
 
 def to_camel_case(name: str) -> str:
-    """Convert snake_case, PascalCase, dot.case, or hyphenated names to camelCase."""
     if not name:
         return ""
-    parts = re.split(r"[._-]+", name)
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    parts = [p for p in re.split(r"[._-]+", s) if p]
+    if not parts:
+        return ""
     first = parts[0].lower()
-    rest = "".join(p.capitalize() for p in parts[1:] if p)
+    rest = "".join(p.capitalize() for p in parts[1:])
     return first + rest
 
 
 def to_pascal_case(name: str) -> str:
-    """Convert snake_case, camelCase, dot.case, or hyphenated names to PascalCase."""
     if not name:
         return ""
-    parts = re.split(r"[._-]+", name)
-    return "".join(p.capitalize() for p in parts if p)
+    s = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    parts = [p for p in re.split(r"[._-]+", s) if p]
+    return "".join(p.capitalize() for p in parts)
 
 
 def map_schema_to_type(schema: dict) -> str:
-    """Map a TypeAPI schema definition to its corresponding PHP type or class name."""
     if not schema or not isinstance(schema, dict):
         return "mixed"
 
@@ -49,7 +50,6 @@ def map_schema_to_type(schema: dict) -> str:
 
 
 def generate_usage(lock_file_path: Path) -> str:
-    """Read sdkgen.lock TypeAPI spec and generate clean PHP operation snippets."""
     if not lock_file_path.is_file():
         return "// No sdkgen.lock found to generate usage examples."
 
@@ -80,7 +80,6 @@ def generate_usage(lock_file_path: Path) -> str:
         raw_arguments = op.get("arguments", {})
         call_args = []
 
-        # Normalize arguments format whether it's a list or a dict
         arguments_list = []
         if isinstance(raw_arguments, list):
             arguments_list = raw_arguments
