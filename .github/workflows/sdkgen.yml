@@ -12,7 +12,7 @@ on:
         description: "The TypeHub changelog on tag"
         required: false
 permissions:
-  contents: 'write'
+  contents: write
 jobs:
   generate:
     runs-on: ubuntu-latest
